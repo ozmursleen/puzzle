@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS Puzzle</title>
+    <link rel='stylesheet' href='css/style.css'/>
+</head>
+<body>
+<div class="puzzle-container">
+    <ul class="list-inline">
+        <li>
+            <p class="moves"><b>Moves: </b> <span id="spMoves">0</span></p>
+        </li>
+        <li>
+            <p class="time"><b>Time: </b> <span id="spTime">00:00</span></p>
+        </li>
+    </ul>
+    <canvas id="puzzleContainer"></canvas>
+</div>
+<div id="loading" class="loading-spinner-backdrop">
+    <div class="loading-spinner">
+        <p>Please wait, loading puzzle...</p>
+    </div>
+</div>
+
+<div id="gameOverMessageContainer" class="loading-spinner-backdrop" style="display: none;">
+    <div class="loading-spinner">
+        <p>
+            Congrats! you have completed a puzzle.<br/><br/>
+            <input type="button" value="Restart" class="btn" onclick="window.location.reload()">
+        </p>
+    </div>
+</div>
+
+<div id="canvasTimer" class="loading-spinner-backdrop" style="display: none">
+    <div class="loading-spinner">
+        <h1 id="spCounter">
+            3
+        </h1>
+    </div>
+</div>
+
+</body>
+<script src="js/puzzle.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        var config = {
+            element: 'puzzleContainer',
+            difficulty: 'Beginner',
+            imageSrc: 'https://s3-eu-west-1.amazonaws.com/wagawin-ad-platform/media/testmode/banner-landscape.jpg',
+            loading: 'loading'
+        };
+        Puzzle.init(config);
+    };
+</script>
+</html>
