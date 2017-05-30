@@ -7,10 +7,10 @@
 <body>
 <div class="puzzle-container">
     <ul class="list-inline">
-        <li>
+        <li class="pair">
             <p class="moves"><b>Moves: </b> <span id="spMoves">0</span></p>
         </li>
-        <li>
+        <li class="pair">
             <p class="time"><b>Time: </b> <span id="spTime">00:00</span></p>
         </li>
     </ul>
@@ -38,15 +38,34 @@
         </h1>
     </div>
 </div>
+<br/><br/>
+<a href="index.html" class="btn">Go Back!</a>
 
 </body>
 <script src="js/puzzle.js"></script>
 <script type="text/javascript">
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
     window.onload = function () {
+        var fromQuery = getParameterByName('puzzle');
+        var imagePath = '';
+        if(~fromQuery.indexOf('http')){
+            imagePath = fromQuery;
+        }else{
+            imagePath = 'css/images/' + fromQuery;
+        }
         var config = {
             element: 'puzzleContainer',
-            difficulty: 'Beginner',
-            imageSrc: 'https://s3-eu-west-1.amazonaws.com/wagawin-ad-platform/media/testmode/banner-landscape.jpg',
+            difficulty: getParameterByName('mode'),
+            imageSrc: imagePath,
             loading: 'loading'
         };
         Puzzle.init(config);

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS Puzzle - Choose Settings</title>
+    <link rel='stylesheet' href='css/style.css'/>
+</head>
+<body>
+<div class="puzzle-container auto">
+    <div class="form-group">
+        <label>
+            Choose an Image
+        </label>
+        <br/>
+        <ul class="list-inline image-list">
+            <li>
+                <a href="#">
+                    <img src="css/images/puzzle_1.jpg">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="css/images/puzzle_2.jpg">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="css/images/puzzle_3.jpg">
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="https://s3-eu-west-1.amazonaws.com/wagawin-ad-platform/media/testmode/banner-landscape.jpg">
+                </a>
+            </li>
+        </ul>
+    </div>
+    <br/>
+    <div class="form-group">
+        <label>
+            Difficulty
+        </label>
+        <br/>
+        <ul class="list-inline mode-list">
+            <li class="selected">
+                <a href="#">
+                    Beginner
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Intermediate
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Expert
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="loading" class="loading-spinner-backdrop" style="display: none;">
+    <div class="loading-spinner">
+        <p>Please wait, loading puzzle...</p>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+
+    var _mode = 'Beginner',
+        _imgSrc = 'puzzle_1.jpg';
+
+    function bindModeSelection() {
+        var $modesList = document.querySelectorAll('.mode-list li a');
+
+        var clearSelection = function(){
+            for (var i = 0; i < $modesList.length; i++) {
+                $modesList[i].parentElement.removeAttribute('class');
+            }
+        };
+
+        for (var i = 0; i < $modesList.length; i++) {
+            $modesList[i].addEventListener('click', function (event) {
+                clearSelection();
+                event.target.parentElement.className = 'selected';
+                _mode = event.target.textContent.trim();
+            });
+        }
+    }
+
+    function bindPicSelection() {
+        var $imagesList = document.querySelectorAll('.image-list li a');
+        for (var i = 0; i < $imagesList.length; i++) {
+            $imagesList[i].addEventListener('click', function (event) {
+                event.preventDefault();
+                var imgSrc = event.target.src;
+                var imageName = '';
+                if(imgSrc.indexOf('localhost') === -1){
+                    imageName = imgSrc;
+                }else{
+                    imageName = imgSrc.substring(imgSrc.lastIndexOf('/') + 1, imgSrc.length);
+                }
+                window.location = 'puzzle.html?puzzle=' + imageName + '&mode=' + _mode;
+            });
+        }
+    }
+
+    window.onload = function () {
+        bindModeSelection();
+        bindPicSelection();
+    };
+</script>
+</html>

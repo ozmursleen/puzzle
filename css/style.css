@@ -9,6 +9,11 @@ body {
     max-width: 1200px;
 }
 
+.puzzle-container.auto{
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
 .loading-spinner-backdrop {
     background: rgba(0, 0, 0, 0.3);
     position: fixed;
@@ -46,10 +51,51 @@ body {
     color: #ccc;
     margin: 0;
     padding: 0;
+}
+
+.list-inline li img{
+    width: 250px;
+    height: 201px;
+}
+
+.list-inline li.pair{
     width: 49%;
 }
 
+.list-inline li a{
+    text-decoration: none;
+}
+
+.list-inline li a:hover{
+    opacity: 0.7;
+}
+
+.list-inline.mode-list li a{
+    background-color: #ccc;
+    padding: 10px;
+    color: #444;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+li.selected a{
+    background-color: #444 !important;
+    color: #fff !important;
+    cursor: default;
+}
+
 .btn{
+    margin-top: 10px;
     border: 1px solid #ccc;
     padding: 5px;
+    background-color: #ccc;
+    color: #444;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.form-group label{
+    color: #ccc;
+    font-weight: bold;
+    display: block;
 }
