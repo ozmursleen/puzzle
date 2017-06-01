@@ -57,7 +57,6 @@ var Puzzle = {
             that.setCanvas();
             that.initPuzzle();
         };
-
         that._img.addEventListener('load', onImageLoaded, false);
         that._img.src = imagePath;
     },

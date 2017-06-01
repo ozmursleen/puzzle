@@ -55,16 +55,16 @@
     }
 
     window.onload = function () {
-        var fromQuery = getParameterByName('puzzle');
+        var fromQuery = getParameterByName('puzzle') || 'https://s3-eu-west-1.amazonaws.com/wagawin-ad-platform/media/testmode/banner-landscape.jpg';
         var imagePath = '';
-        if(~fromQuery.indexOf('http')){
+        if(~fromQuery.indexOf('http') || ~fromQuery.indexOf('https')){
             imagePath = fromQuery;
         }else{
             imagePath = 'css/images/' + fromQuery;
         }
         var config = {
             element: 'puzzleContainer',
-            difficulty: getParameterByName('mode'),
+            difficulty: getParameterByName('mode')|| 'Beginner',
             imageSrc: imagePath,
             loading: 'loading'
         };
