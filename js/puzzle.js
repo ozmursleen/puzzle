@@ -36,7 +36,7 @@ var Puzzle = {
         var difficultyLevels = {
             'Beginner': 2,
             'Intermediate': 4,
-            'Advanced': 6
+            'Expert': 6
         };
 
         that.config = Object.extend(defaultConfig, that.config);
